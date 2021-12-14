@@ -1,0 +1,14 @@
+{
+  "name": "octa-monitor",
+  "version": "1.0.0",
+  "description": "Student Monitoring System",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Jeswanth Mukesh",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^16.0.4"
+  }
+}
