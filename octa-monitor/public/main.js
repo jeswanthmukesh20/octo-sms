@@ -10,7 +10,8 @@ let mainWindow;
 app.on('ready', function(){
     mainWindow = new BrowserWindow({
         webPreferences:{
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            nodeIntegration: true
         }
     });
     // mainWindow.loadFile(url.format({
@@ -18,4 +19,10 @@ app.on('ready', function(){
     //     protocol: 'file:'
     // }))
     mainWindow.loadURL('http://localhost:3000');
+});
+app.on('browser-window-focus', () => {
+    console.log('online');
+});
+app.on('browser-window-blur', () => {
+    console.log('offline');
 });
