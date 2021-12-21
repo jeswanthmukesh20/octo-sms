@@ -8,9 +8,9 @@ let mainWindow;
 
 app.on('ready', function(){
     mainWindow = new BrowserWindow({});
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'mainWindow.html'),
-        protocol: 'file:',
-        slashes: true
-    }));
+    // mainWindow.loadFile(url.format({
+    //     pathname: path.join(__dirname, 'mainWindow.html'),
+    //     protocol: 'file:'
+    // }))
+    mainWindow.loadURL('http://localhost:3000');
 });
