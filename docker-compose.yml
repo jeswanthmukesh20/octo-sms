@@ -5,61 +5,53 @@ services:
   postgres:
     container_name: psql
     build: ./postgres
-    image: jeswanthmukesh20/python-project-postgres
     environment:
-      - POSTGRES_MULTIPLE_DATABASES=django,keycloak
-      - POSTGRES_USER=facetagr
-      - POSTGRES_PASSWORD=facetagr
+      - POSTGRES_MULTIPLE_DATABASES=fastapi,keycloak
+      - POSTGRES_USER=octa
+      - POSTGRES_PASSWORD=octa
     volumes:
       - ./postgres/docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
-    networks:
-      - backend
+
 
   fastapi:
     container_name: fastapi
-    build: ./FastAPI
+    build: ./fastapi
     restart: always
     environment:
       - MONGO_USERNAME=octa
       - MONGO_PASSWORD=octa
       - MONGO_HOST=mongo
-      - MONGO_DATABASE=ComputerVision
-      - CLIENT=rest-client
-      - CLIENT_SECRET=d60e57e5-79fd-4cd7-b021-94380120d71b
-      - Domain_name=webv2.facetagr.com
-      - REALM=sample
+      - MONGO_DATABASE=OctaMoniotr
+      - CLIENT=octa-auth
+      - CLIENT_SECRET=NJqY164xsUTzDfJKn96VJ60iNU0GguAf
+      - DOMAIN=www.octamonitor.com
+      - ADMIN_DOMAIN=admin.octamonitor.com
+      - REALM=octa
     ports:
       - "8001:8001"
     extra_hosts:
-      - "webv2.facetagr.com:192.168.43.156"
-    networks:
-      - frontend
-      - backend
+      - "auth.octamonitor.com:192.168.43.156"
 
   nginx:
     build: ./nginx
     container_name: nginx
-    volumes:
-      - static:/static
     ports:
       - "80:80"
       - "443:443"
     restart: "on-failure"
-    networks:
-      - frontend
 
   keycloak:
     build: ./keycloak
-    container_name: keycloak
+    container_name: Keycloak
     restart: "unless-stopped"
     environment: 
       - KEYCLOAK_USER=octa
       - KEYCLOAK_PASSWORD=octa
       - KEYCLOAK_IMPORT=/tmp/import-realm.json
       - PROXY_ADDRESS_FORWARDING=true
-      - KEYCLOAK_FRONTEND_URL=https://www.octamonitor.com/auth
+      - KEYCLOAK_FRONTEND_URL=https://auth.octamonitor.com/auth
       - KEYCLOAK_HTTP_PORT=443
       - DB_VENDOR=POSTGRES
       - DB_ADDR=postgres
@@ -73,23 +65,35 @@ services:
       "-Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config",
       "-Dkeycloak.migration.strategy=IGNORE_EXISTING"]
     volumes:
-      - ./realm-config:/opt/jboss/keycloak/realm-config
-      - ./keycloak-db:/opt/jboss/keycloak/standalone/dat
+      - realm-config:/opt/jboss/keycloak/realm-config
+      - keycloak-db:/opt/jboss/keycloak/standalone/dat
     ports:
         - "8080:8080"
-    networks:
-      - frontend
-      - backend
+
 
   mongo:
-    build: ./mongo
-    container_name: "mongo"
+    build: ./mongodb
+    container_name: "mongodb"
     restart: unless-stopped
     command: mongod --auth
-    volumes:
-      - ./mongo/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    # volumes:
+    #   - ./mongo/init.js:/docker-entrypoint-initdb.d/init.js:ro
     ports:
-      - 27017:27017
-    networks:
-      - backend
+      - 27018:27018
+ 
   
+
+
+# networks:
+#   frontend:
+#     driver: bridge
+#   backend:
+#     driver: bridge
+
+
+volumes:
+  realm-config:
+  keycloak-db:
+  # mongodb:
+  postgres_data:
+      driver: local

@@ -1,12 +1,12 @@
-db = db.getSiblingDB('ComputerVision');
+db = db.getSiblingDB('OCTA');
 db.createUser(
   {
     user: 'octa',
     pwd: 'octa',
-    roles: [{ role: 'readWrite', db: 'OCTA' }],
-  },
+    roles: [{ role: 'readWrite', db: 'OCTA' }]
+  }
 );
-let dbs = ["Collection1", "collection2"];
+let dbs = ["AI_DS", "IT", "CSE"];
 for (let i = 0; i < dbs.length; i++){
     db.createCollection(dbs[i]);
 };

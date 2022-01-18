@@ -1,0 +1,84 @@
+[{
+    "_id": 322,
+    "host": {
+        "_id": 124,
+        "name": "staff name",
+        "class_no": 2
+    },
+    "date": "2018-05-30T19:00:00.000Z",
+    "department": {
+        "_id": "5b21ca3eeb7f6fbccd471814",
+        "name": "department name"
+    },
+    "class_info":{
+        "course_name": "course name",
+        "class_no": 2,
+        "present": [
+            {
+                "student_id": "5b21ca3eeb7f6fbccd471816",
+                "student_name": "student name"
+            },
+            {
+                "student_id": "5b21ca3eeb7f6fbccd471817",
+                "student_name": "student name"
+            }
+        ]
+    },
+    "createdAt": "2018-05-30T19:00:00.000Z",
+    "session": {
+        "232321": [
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "232321",
+                "classId": 232422,
+                "tabStatus": true,
+                "timeStamp": "1594823426.159446"
+            },
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "232321",
+                "classId": 232422,
+                "tagStatus": true,
+                "timeStamp": "1594823426.159446"
+            },
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "232321",
+                "classId": 232422,
+                "tagStatus": true,
+                "timeStamp": "1594823426.159446"
+            }
+        ],
+        "5b21ca3eeb7f6fbccd471823": [
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "5b21ca3eeb7f6fbccd471823",
+                "classId": 232422,
+                "tagStatus": true,
+                "timeStamp": "1594823426.159446"
+            },
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "5b21ca3eeb7f6fbccd471823",
+                "classId": 232422,
+                "tagStatus": true,
+                "timeStamp": "1594823426.159446"
+            },
+            {
+                "faceState": true,
+                "faces": 1,
+                "studentId": "5b21ca3eeb7f6fbccd471823",
+                "classId": 232422,
+                "tagStatus": true,
+                "timeStamp": "1594823426.159446"
+            }
+        ]
+    },
+    "endedAt": "2018-05-30T19:00:00.000Z"
+}
+]

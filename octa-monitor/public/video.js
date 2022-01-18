@@ -1,4 +1,7 @@
+const {ipcRenderer} = require('electron');
 let model;
+const student_id = 232321;
+const class_id = 322;
 let video=document.getElementById("video");
 const SetupCamera = () => {
     navigator.mediaDevices
@@ -26,11 +29,17 @@ const detectFace = async () => {
             face_state = false;
         }
     }
+    ipcRenderer.send('face_state', {
+        faceState: face_state,
+        faces: predction.length,
+        studentId: student_id,
+        classId: class_id
+    });
 }
 
 SetupCamera();
 
 video.addEventListener('loadeddata', async () => {
     model = await blazeface.load();
-    setInterval(detectFace, 100)
+    setInterval(detectFace, 1000)
 });
